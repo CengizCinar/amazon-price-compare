@@ -1,0 +1,59 @@
+{
+    "manifest_version": 3,
+    "name": "Amazon Price Compare",
+    "version": "1.0",
+    "description": "Compare Amazon prices with Idealo",
+    
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "storage",
+      "webRequest"
+    ],
+  
+    "host_permissions": [
+      "http://localhost:5000/*",
+      "*://*.amazon.com/*",
+      "*://*.idealo.de/*",
+      "*://*.idealo.fr/*",
+      "*://*.idealo.it/*"
+    ],
+  
+    "content_scripts": [
+      {
+        "matches": [
+          "*://*.amazon.com/*",
+          "*://*.amazon.de/*",
+          "*://*.amazon.co.uk/*",
+          "*://*.amazon.fr/*",
+          "*://*.amazon.it/*"
+        ],
+        "js": ["content.js"],
+        "css": ["styles/content.css"]
+      }
+    ],
+
+    "icons": {
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+
+    "web_accessible_resources": [{
+      "resources": [
+        "styles/*",
+        "icons/*"
+      ],
+      "matches": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.fr/*",
+        "*://*.amazon.it/*"
+      ]
+    }]
+  }
